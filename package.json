@@ -7,11 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "node download-model.cjs"
   },
   "dependencies": {
+    "@huggingface/jinja": "^0.3.1",
+    "@wllama/wllama": "^1.16.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
