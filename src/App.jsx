@@ -4,10 +4,11 @@
  * the code to suit your needs.
  */
 import { useEffect, useMemo, useRef, useState } from "react";
-import { formatChat, getWllamaInstance, PRESET_MODELS } from "./lib/wllama";
+import { CHAT_ROLE as ROLE, formatChat, getWllamaInstance, PRESET_MODELS } from "./lib/wllama";
 
 const ELLIPSIS = "...";
 const initialModelId = Object.keys(PRESET_MODELS)[0];
+const copyToClipboard = (text) => navigator.clipboard.writeText(text).catch((e) => console.error(e));
 
 const modelStateDefaults = {
   isLoading: false,
@@ -69,8 +70,8 @@ function App() {
   const streamMessages = (prompt) => {
     setMessages((current) => [
       ...current,
-      { role: "user", content: prompt.trim() },
-      { role: "assistant", content: ELLIPSIS },
+      { role: ROLE.user, content: prompt.trim() },
+      { role: ROLE.assistant, content: ELLIPSIS },
     ]);
     return (token, piece, text) =>
       setMessages((current) => {
@@ -84,10 +85,10 @@ function App() {
     if (!isReady) await loadModel();
     setIsGenerating(true);
     const latestMessages = [...messages].slice(-3);
-    const formattedChat = await formatChat(wllama, [...latestMessages, { role: "user", content: prompt.trim() }]);
+    const formattedChat = await formatChat(wllama, [...latestMessages, { role: ROLE.user, content: prompt.trim() }]);
     await wllama.createCompletion(formattedChat, {
       nPredict: 512,
-      sampling: { temp: 0.6, penalty_repeat: 1.3 },
+      sampling: { temp: 0.5, penalty_repeat: 1.3 },
       onNewToken: streamMessages(prompt),
     });
     setIsGenerating(false);
@@ -114,18 +115,21 @@ function App() {
 
   const isBusy = isLoading || isGenerating;
   const shouldDisableSubmit = isBusy || prompt.trim().length === 0;
+  const loadedSize = loadingProgress.loaded || 0;
   const totalSize = loadingProgress.total || 100;
-  const loadingProgressDisplayString = `${Math.floor(((loadingProgress.loaded || 0) / totalSize) * 100)}%`;
+  const loadingProgressDisplayString = `${Math.floor((loadedSize / totalSize) * 100)}%`;
   const modelSizeDisplayString = totalSize ? `(${Math.ceil(totalSize / 1024 / 1024)}MB)` : "";
 
   return (
     <div>
       <header>
         <div>
-          <button className="new-chat-button" title="New Chat" onClick={handleOnNewChatClick} disabled={isBusy}>
-            &nbsp;&#8853;&nbsp;
+          <button aria-labelledby="newChatLabel" onClick={handleOnNewChatClick} disabled={isBusy}>
+            &#8853;
+            <span id="newChatLabel" className="tooltip">
+              New chat
+            </span>
           </button>
-          &nbsp;
           <div className="dropdown" key={selectedModel.name}>
             <div className="dropdown-display">
               <span className="dropdown-label" title={selectedModel.name}>
@@ -178,15 +182,24 @@ function App() {
                 {messages.map(({ content, role }, index) => (
                   <div key={index} className={`message-${role}`}>
                     <pre>{content !== ELLIPSIS && content}</pre>
+                    {!isGenerating && role === ROLE.assistant && (
+                      <div>
+                        <button aria-labelledby="copyLabel" onClick={() => copyToClipboard(content)}>
+                          &#10064;
+                          <span className="tooltip" id="copyLabel">
+                            Copy
+                          </span>
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ))}
                 {isGenerating && <div className="chat-loader"></div>}
-                {!isGenerating && <button title="Re-generate">r</button>}
               </div>
             ) : (
               <h1 className="welcome-message scale-up-center">Hi, how may I help you?</h1>
             )}
-            {isLoading && (
+            {isLoading && loadedSize > 0 && (
               <div className="download-message">
                 <b>{loadingProgressDisplayString}</b> Downloading model file {modelSizeDisplayString} to your computer.
                 This happens only the first time you load the model.
@@ -203,7 +216,7 @@ function App() {
               maxLength={512}
               readOnly={isBusy}
             />
-            <button type="button" onClick={submitPrompt} disabled={shouldDisableSubmit}>
+            <button type="button" title="submit" onClick={submitPrompt} disabled={shouldDisableSubmit}>
               <div>&#8594;</div>
             </button>
           </div>

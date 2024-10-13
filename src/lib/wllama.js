@@ -7,6 +7,11 @@ import wllamaSingle from "@wllama/wllama/src/single-thread/wllama.wasm?url";
 const CHAT_TEMPLATE =
   "{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}";
 
+export const CHAT_ROLE = Object.freeze({
+    assistant: 'assistant',
+    user: 'user',
+  });
+
 const isLocalHost = ["localhost", "0.0.0.0", "127.0.0.1"].includes(window.location.hostname);
 
 export const PRESET_MODELS = {
