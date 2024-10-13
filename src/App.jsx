@@ -87,6 +87,7 @@ function App() {
     const formattedChat = await formatChat(wllama, [...latestMessages, { role: "user", content: prompt.trim() }]);
     await wllama.createCompletion(formattedChat, {
       nPredict: 512,
+      sampling: { temp: 0.6, penalty_repeat: 1.3 },
       onNewToken: streamMessages(prompt),
     });
     setIsGenerating(false);
@@ -180,6 +181,7 @@ function App() {
                   </div>
                 ))}
                 {isGenerating && <div className="chat-loader"></div>}
+                {!isGenerating && <button title="Re-generate">r</button>}
               </div>
             ) : (
               <h1 className="welcome-message scale-up-center">Hi, how may I help you?</h1>
@@ -207,8 +209,11 @@ function App() {
           </div>
           <div className="disclaimer">
             &#9888; Models can make mistakes, always double-check responses. &bull;&nbsp;
+            <a href={selectedModel.url} target="_blank" rel="noopener" download>
+              Model
+            </a>&nbsp;&bull;&nbsp;
             <a href={selectedModel.license} target="_blank" rel="noopener">
-              Model License
+              License
             </a>
           </div>
           <footer>
