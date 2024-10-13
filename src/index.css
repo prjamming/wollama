@@ -135,6 +135,7 @@ header > div:last-of-type {
 .output-container {
   margin-top: 1rem;
   min-height: 20vh;
+  padding-bottom: 1rem;
 }
 .welcome-message {
   padding-top: 16vh;
