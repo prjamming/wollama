@@ -15,6 +15,13 @@ export const CHAT_ROLE = Object.freeze({
 const isLocalHost = ["localhost", "0.0.0.0", "127.0.0.1"].includes(window.location.hostname);
 
 export const PRESET_MODELS = {
+  // "https://huggingface.co/neopolita/smollm-360m-instruct-gguf"
+  "SmolLm (360M)": {
+    name: "SmolLm (360M)",
+    url: "https://huggingface.co/neopolita/smollm-360m-instruct-gguf/resolve/main/smollm-360m-instruct_q4_k_m.gguf",
+    license: "https://huggingface.co/datasets/choosealicense/licenses/blob/main/markdown/apache-2.0.md",
+    description: "Higher quality and more accurate than the 135M version",
+  },
   // https://huggingface.co/QuantFactory/SmolLM-135M-Instruct-GGUF
   "SmolLm (135M)": {
     name: "SmolLm (135M)",
@@ -22,14 +29,7 @@ export const PRESET_MODELS = {
       ? "/models/smollm-135m-instruct_q8_0.gguf"
       : "https://huggingface.co/QuantFactory/SmolLM-135M-Instruct-GGUF/resolve/main/SmolLM-135M-Instruct.Q4_K_M.gguf",
     license: "https://huggingface.co/datasets/choosealicense/licenses/blob/main/markdown/apache-2.0.md",
-    description: "Less accurate but faster than the 360M version",
-  },
-  // "https://huggingface.co/neopolita/smollm-360m-instruct-gguf"
-  "SmolLm (360M)": {
-    name: "SmolLm (360M)",
-    url: "https://huggingface.co/neopolita/smollm-360m-instruct-gguf/resolve/main/smollm-360m-instruct_q4_k_m.gguf",
-    license: "https://huggingface.co/datasets/choosealicense/licenses/blob/main/markdown/apache-2.0.md",
-    description: "Higher quality and more accurate than the 135M version",
+    description: "Less accurate but faster than the 360M version. Good for mobile testing",
   },
   // https://huggingface.co/hugging-quants/Llama-3.2-1B-Instruct-Q4_K_M-GGUF
   "Llama 3.2 (1B)": {

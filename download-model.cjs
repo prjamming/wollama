@@ -6,9 +6,9 @@ const fetch = require('node-fetch');
 const path = require('path');
 const fs = require('fs');
 
-const fileName = 'smollm-135m-instruct_q8_0.gguf';
+const fileName = 'smollm-360m-instruct_q4_k_m.gguf';
 
-const fileUrl = `https://huggingface.co/neopolita/smollm-135m-instruct-gguf/resolve/main/${fileName}`;
+const fileUrl = `https://huggingface.co/neopolita/smollm-360m-instruct-gguf/resolve/main/${fileName}`;
 const destination = path.join(__dirname, `public/models/${fileName}`);
 
 console.log('Downloading ' + fileUrl);
