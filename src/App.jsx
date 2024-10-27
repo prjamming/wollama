@@ -159,7 +159,7 @@ function App() {
           </div>
         </div>
         <div>
-          <a href="https://huggingface.co/models?library=gguf" target="_blank" rel="noopener">
+          <a href="https://huggingface.co/models?library=gguf&pipeline_tag=text-generation" target="_blank" rel="noopener">
             Download Models
           </a>
           &nbsp;&bull;&nbsp;
