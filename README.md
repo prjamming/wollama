@@ -4,7 +4,7 @@
 
 https://github.com/user-attachments/assets/ebeb24ae-cd52-4c43-96d6-c535f2e51f8f
 
-Live site: https://private-ai-chat-assistant.vercel.app/
+Live site: https://private-ai-chat.vercel.app
 
 ## Running locally
 
