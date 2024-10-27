@@ -35,40 +35,44 @@ a:hover {
 .dropdown {
   position: relative;
   display: inline-block;
+  max-width: 12rem; 
+}
+.dropbtn {
   color: #676869;
   border-radius: 4px;
   max-width: 12rem; 
-  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem 0.5rem 0.5rem ;
+
 }
-.dropdown:hover {
-  background-color: #f2f2f2;
-}
-.dropdown .dropdown-display { 
-  width: 100%;
-  white-space: nowrap;  
-  padding: 0.5rem;
-  font-weight: 700;
-}
-.dropdown .dropdown-label {
-  display: inline-block;
-  min-width: 7rem;
-  max-width: 9rem;
-  line-height: 1rem;
-  margin: 0 0.5rem 0 0;
-  white-space: nowrap;
-  overflow: hidden;
+
+.dropbtn::after {
+  content: '';
+  border: solid transparent; 
+  border-width: 5px 5px 0; 
+  border-top-color: #565758; 
+  position: absolute;
+  top: 50%;
+  left: 100%; 
+  transform: translateY(-50%) translateX(-150%);
 }
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 8rem;
-  overflow: hidden;
-  border: 1px solid #f2f2f2;
+  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 0px;
   z-index: 1;
 }
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .dropdown-content label {
   display: block;
   font-size: 0.8rem;
@@ -77,6 +81,10 @@ a:hover {
   max-width: 12rem;
   white-space: nowrap; 
   padding: 0.5rem; 
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
 }
 .dropdown-content[data-busy="true"] {
   cursor: not-allowed;
@@ -97,14 +105,16 @@ button {
   border: 0;
   background-color: #fff;
   color: #888;
-  font-size: 2rem;
+  font-size: 1.5rem;
   position: relative; /* for tooltip */
 }
 button:hover {
   background-color: #f2f2f2;
+  color:#555;
 }
 button:active {
   background-color: #e2e2e2;
+  color: #555;
 }
 button:disabled {
   border-color: #f2f2f2;
@@ -151,6 +161,8 @@ header {
 }
 header > div:first-of-type {
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 header > div:last-of-type {
   text-align: right;
@@ -176,6 +188,7 @@ header > div:last-of-type {
 }
 .download-message {
   margin: 1rem 0;  
+  color: #676869;
 }
 .output-container .messages {
   height: 60vh;
@@ -199,7 +212,6 @@ header > div:last-of-type {
 }
 .messages button {
   margin-top: 0.5rem;
-  font-size: 1.5rem;
 }
 
 .message-assistant {
@@ -253,7 +265,7 @@ input {
   background-color: #444;
 }
 .prompt-container button:disabled {
-  background-color: #444;
+  background-color: #777;
   cursor: not-allowed;
 }
 .disclaimer, footer {

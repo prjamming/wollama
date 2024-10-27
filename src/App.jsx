@@ -82,14 +82,15 @@ function App() {
   };
 
   const submitPrompt = async () => {
-    if (!isReady) await loadModel();
+    const onNewToken = streamMessages(prompt);
     setIsGenerating(true);
+    if (!isReady) await loadModel();
     const latestMessages = [...messages].slice(-3);
     const formattedChat = await formatChat(wllama, [...latestMessages, { role: ROLE.user, content: prompt.trim() }]);
     await wllama.createCompletion(formattedChat, {
       nPredict: 512,
       sampling: { temp: 0.5, penalty_repeat: 1.3 },
-      onNewToken: streamMessages(prompt),
+      onNewToken,
     });
     setIsGenerating(false);
     setPrompt("");
@@ -131,37 +132,30 @@ function App() {
             </span>
           </button>
           <div className="dropdown" key={selectedModel.name}>
-            <div className="dropdown-display">
-              <span className="dropdown-label" title={selectedModel.name}>
-                {selectedModel.name}
-              </span>
-              <span>&#9663;</span>
-            </div>
-            <div className="dropdown-content" data-busy={isBusy}>
-              <ul>
-                {Object.values(PRESET_MODELS).map(({ name, description }) => (
-                  <li key={name}>
-                    <label role="button" title={description} onClick={getMenuOptionHandler(name)}>
-                      {name}
-                    </label>
-                  </li>
-                ))}
-                {localModelFiles.length > 0 && <label role="button">{selectedModel.name}</label>}
-                <li>
-                  <label title="Select your own local GGUF file">
-                    Select GGUF file (2GB Max)...
-                    <input
-                      type="file"
-                      accept=".gguf"
-                      disabled={isBusy}
-                      ref={fileInputRef}
-                      onChange={handleFileInputChange}
-                      hidden
-                    />
+            <button className="dropbtn" title={selectedModel.name}>{selectedModel.name}</button>
+            <ul className="dropdown-content">
+              {Object.values(PRESET_MODELS).map(({ name, description }) => (
+                <li key={name}>
+                  <label role="button" title={description} onClick={getMenuOptionHandler(name)}>
+                    {name}
                   </label>
                 </li>
-              </ul>
-            </div>
+              ))}
+              {localModelFiles.length > 0 && <label role="button">{selectedModel.name}</label>}
+              <li>
+                <label title="Select your own local GGUF file">
+                  Select GGUF file (2GB Max)...
+                  <input
+                    type="file"
+                    accept=".gguf"
+                    disabled={isBusy}
+                    ref={fileInputRef}
+                    onChange={handleFileInputChange}
+                    hidden
+                  />
+                </label>
+              </li>
+            </ul>
           </div>
         </div>
         <div>
@@ -217,7 +211,7 @@ function App() {
               readOnly={isBusy}
             />
             <button type="button" title="submit" onClick={submitPrompt} disabled={shouldDisableSubmit}>
-              <div>&#8594;</div>
+              <div>&#10132;</div>
             </button>
           </div>
           <div className="disclaimer">
