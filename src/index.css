@@ -100,7 +100,7 @@ a:hover {
 }
 
 button {
-  padding: 0 0.5rem;
+  padding: 4px;
   border-radius: 4px;
   border: 0;
   background-color: #fff;
