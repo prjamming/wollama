@@ -19,7 +19,7 @@ export const PRESET_MODELS = {
   "SmolLm (360M)": {
     name: "SmolLm (360M)",
     url: "https://huggingface.co/neopolita/smollm-360m-instruct-gguf/resolve/main/smollm-360m-instruct_q4_k_m.gguf",
-    license: "https://huggingface.co/datasets/choosealicense/licenses/blob/main/markdown/apache-2.0.md",
+    license: "https://huggingface.co/HuggingFaceTB/SmolLM-360M#license",
     description: "Higher quality and more accurate than the 135M version",
   },
   // https://huggingface.co/QuantFactory/SmolLM-135M-Instruct-GGUF
@@ -28,7 +28,7 @@ export const PRESET_MODELS = {
     url: isLocalHost
       ? "/models/smollm-135m-instruct_q8_0.gguf"
       : "https://huggingface.co/QuantFactory/SmolLM-135M-Instruct-GGUF/resolve/main/SmolLM-135M-Instruct.Q4_K_M.gguf",
-    license: "https://huggingface.co/datasets/choosealicense/licenses/blob/main/markdown/apache-2.0.md",
+    license: "https://huggingface.co/HuggingFaceTB/SmolLM-135M#license",
     description: "Less accurate but faster than the 360M version. Good for mobile testing",
   },
   // https://huggingface.co/hugging-quants/Llama-3.2-1B-Instruct-Q4_K_M-GGUF
