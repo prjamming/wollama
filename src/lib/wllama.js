@@ -24,12 +24,12 @@ export const PRESET_MODELS = {
     license: "https://huggingface.co/HuggingFaceTB/SmolLM2-360M#license",
     description: "Higher quality and more accurate than the 135M version",
   },
-  // https://huggingface.co/lmstudio-community/SmolLM2-135M-Instruct-GGUF
-  "SmolLM2 (135M)": {
-    name: "SmolLM2 (135M)",
-    url: "https://huggingface.co/lmstudio-community/SmolLM2-135M-Instruct-GGUF/resolve/main/SmolLM2-135M-Instruct-Q8_0.gguf",
-    license: "https://huggingface.co/HuggingFaceTB/SmolLM2-135M#license",
-    description: "Less accurate but faster than the 360M version. Good for mobile testing",
+  // https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF
+  "Qwen2.5 (0.5B)": {
+    name: "Qwen2.5 (0.5B)",
+    url: "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf",
+    license: "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/blob/main/LICENSE",
+    description: "The 0.5B version of Qwen2.5",
   },
   // https://huggingface.co/hugging-quants/Llama-3.2-1B-Instruct-Q4_K_M-GGUF
   "Llama 3.2 (1B)": {
