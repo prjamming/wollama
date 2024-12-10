@@ -8,6 +8,7 @@ import { CHAT_ROLE as ROLE, formatChat, getWllamaInstance, PRESET_MODELS } from 
 
 const ELLIPSIS = "...";
 const initialModelId = Object.keys(PRESET_MODELS)[0];
+// eslint-disable-next-line no-console
 const copyToClipboard = (text) => navigator.clipboard.writeText(text).catch((e) => console.error(e));
 
 const modelStateDefaults = {
@@ -132,7 +133,9 @@ function App() {
             </span>
           </button>
           <div className="dropdown" key={selectedModel.name}>
-            <button className="dropbtn" title={selectedModel.name}>{selectedModel.name}</button>
+            <button className="dropbtn" title={selectedModel.name}>
+              {selectedModel.name}
+            </button>
             <ul className="dropdown-content">
               {Object.values(PRESET_MODELS).map(({ name, description }) => (
                 <li key={name}>
@@ -159,7 +162,10 @@ function App() {
           </div>
         </div>
         <div>
-          <a href="https://huggingface.co/models?library=gguf&pipeline_tag=text-generation" target="_blank" rel="noopener">
+          <a
+            href="https://huggingface.co/models?library=gguf&pipeline_tag=text-generation"
+            target="_blank"
+            rel="noopener">
             Download Models
           </a>
           &nbsp;&bull;&nbsp;
@@ -218,7 +224,8 @@ function App() {
             &#9888; Models can make mistakes, always double-check responses. &bull;&nbsp;
             <a href={selectedModel.url} target="_blank" rel="noopener" download>
               Model
-            </a>&nbsp;&bull;&nbsp;
+            </a>
+            &nbsp;&bull;&nbsp;
             <a href={selectedModel.license} target="_blank" rel="noopener">
               License
             </a>
