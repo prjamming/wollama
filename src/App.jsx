@@ -57,7 +57,6 @@ function App() {
   const loadModel = async () => {
     setModelState((current) => ({ ...current, isLoading: true }));
     const options = {
-      n_threads: 1,
       useCache: true,
       allowOffline: true,
       progressCallback: (progress) =>

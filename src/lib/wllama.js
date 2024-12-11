@@ -1,8 +1,8 @@
 import { Wllama } from "@wllama/wllama/esm/wllama";
 import { Template } from "@huggingface/jinja";
 
-import wllamaSingleJS from "@wllama/wllama/src/single-thread/wllama.js?url";
-import wllamaSingle from "@wllama/wllama/src/single-thread/wllama.wasm?url";
+import wllamaSingle from "@wllama/wllama/esm/single-thread/wllama.wasm?url";
+import wllamaMulti from "@wllama/wllama/esm/multi-thread/wllama.wasm?url";
 
 const CHAT_TEMPLATE =
   "{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}";
@@ -52,6 +52,6 @@ export const formatChat = async (wllamaInstance, messages) => {
 
 export const getWllamaInstance = () =>
   new Wllama({
-    "single-thread/wllama.js": wllamaSingleJS,
     "single-thread/wllama.wasm": wllamaSingle,
+    "multi-thread/wllama.wasm": wllamaMulti,
   });
