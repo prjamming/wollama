@@ -2,7 +2,7 @@
 
 ## Download and run local LLMs within your browser.
 
-https://github.com/user-attachments/assets/ebeb24ae-cd52-4c43-96d6-c535f2e51f8f
+[preview](https://github.com/user-attachments/assets/d7e00366-d78f-4c8e-ae66-fd8319d1375d)
 
 Live site: https://private-ai-chat.vercel.app
 
