@@ -10,6 +10,11 @@ const fileName = "SmolLM2-360M-Instruct-Q4_K_M.gguf";
 
 const fileUrl = `https://huggingface.co/lmstudio-community/SmolLM2-360M-Instruct-GGUF/resolve/main/${fileName}`;
 const destination = path.join(__dirname, `public/models/${fileName}`);
+// check if file exists
+if (fs.existsSync(destination)) {
+  console.log(`Skipping download. Model file ${destination} already exists`);
+  return;
+}
 
 console.log("Downloading " + fileUrl);
 fetch(fileUrl)
