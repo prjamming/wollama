@@ -38,6 +38,26 @@ export const PRESET_MODELS = {
     license: "https://raw.githubusercontent.com/meta-llama/llama-models/refs/heads/main/models/llama3_2/LICENSE",
     description: "The 1B version of The Meta Llama 3.2 collection.",
   },
+  // https://huggingface.co/collections/tiiuae/falcon3-67605ae03578be86e4e87026
+  "Falcon3 (1B)": {
+    name: "Falcon3 (1B)",
+    url: "https://huggingface.co/tiiuae/Falcon3-1B-Instruct-GGUF/resolve/main/Falcon3-1B-Instruct-q4_k_m.gguf",
+    license: "https://falconllm.tii.ae/terms-and-conditions.html",
+    description: "The 1B version of Falcon3 family of Open Foundation Models",
+  },
+  // https://huggingface.co/collections/tiiuae/falcon3-67605ae03578be86e4e87026
+  "Falcon3 (1B)": {
+    name: "Falcon3 (1B)",
+    url: "https://huggingface.co/tiiuae/Falcon3-1B-Instruct-GGUF/resolve/main/Falcon3-1B-Instruct-q4_k_m.gguf",
+    license: "https://falconllm.tii.ae/terms-and-conditions.html",
+    description: "The 1B version of Falcon3 family of Open Foundation Models",
+  },
+  "Deepseek R1 (1.5B)": {
+    name: "Deepseek R1 (1.5B)",
+    url: "https://huggingface.co/bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF/resolve/main/DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf",
+    license: "https://huggingface.co/deepseek-ai/DeepSeek-R1#7-license",
+    description: "The 1.5B version of Deepseek R1",
+  }
 };
 
 export const formatChat = async (wllamaInstance, messages) => {
