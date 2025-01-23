@@ -218,22 +218,24 @@ function App() {
                   return (
                     <Box key={id} pl={role === "user" ? "9" : 0} pr="3">
                       <Callout.Root {...getCalloutProps(role)}>
-                        <Callout.Text size="3">
-                          {content !== ELLIPSIS && <Markdown>{content}</Markdown>}
-                          {role === ROLE.assistant &&
-                            (isLastMessage && isGenerating ? null : (
-                              <Flex py="3" gap="4">
-                                <IconButton
-                                  tooltip="Read"
-                                  onClick={() => handleReadAloudClick(content)}
-                                  variant="ghost">
-                                  {isReadingAloud ? <StopCircleIcon width="20" /> : <SpeakerWaveIcon width="20" />}
-                                </IconButton>
-                                <IconButton tooltip="Copy" onClick={() => copyToClipboard(content)} variant="ghost">
-                                  <DocumentDuplicateIcon width="20" />
-                                </IconButton>
-                              </Flex>
-                            ))}
+                        <Callout.Text size="3" asChild>
+                          <div>
+                            {content !== ELLIPSIS && <Markdown>{content}</Markdown>}
+                            {role === ROLE.assistant &&
+                              (isLastMessage && isGenerating ? null : (
+                                <Flex py="3" gap="4">
+                                  <IconButton
+                                    tooltip="Read"
+                                    onClick={() => handleReadAloudClick(content)}
+                                    variant="ghost">
+                                    {isReadingAloud ? <StopCircleIcon width="20" /> : <SpeakerWaveIcon width="20" />}
+                                  </IconButton>
+                                  <IconButton tooltip="Copy" onClick={() => copyToClipboard(content)} variant="ghost">
+                                    <DocumentDuplicateIcon width="20" />
+                                  </IconButton>
+                                </Flex>
+                              ))}
+                          </div>
                         </Callout.Text>
                       </Callout.Root>
                     </Box>
