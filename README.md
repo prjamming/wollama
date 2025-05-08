@@ -4,7 +4,7 @@
 
 [preview](https://github.com/user-attachments/assets/d7e00366-d78f-4c8e-ae66-fd8319d1375d)
 
-Live site: https://private-ai-chat.vercel.app
+Live site: https://wollama.vercel.app
 
 ## Running locally
 
