@@ -1,3 +1,16 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background-color: #800080; /* Purple */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root > * {
+  background-color: transparent; /* Ensure the children don't override background */
+}
 * {
   box-sizing: border-box;
 }
