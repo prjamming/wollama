@@ -24,4 +24,5 @@ npm run dev
 - [Wllama](https://github.com/ngxson/wllama)
 - SmolLm - [HuggingFace](https://huggingface.co/HuggingFaceTB)
 - Llama 3.2 - [Meta](https://www.llama.com/)
+- Deepseek R1 - [DeepSeek](https://www.deepseek.com/)
 
