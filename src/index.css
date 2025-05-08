@@ -1,9 +1,6 @@
 * {
   box-sizing: border-box;
 }
-body {
-	background-color: purple;
-}
 .welcome-text {
   padding-top: 20vh;
 }
