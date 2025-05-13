@@ -276,7 +276,7 @@ function App() {
           </Box>
           <Box pt="2" pb="4">
             <Text as="div" align="center" size="1" color="gray">
-              &#9888; The model can always make a mistake. Make sure to check responses. &bull;&nbsp;
+              &#9888; The model can always make a mistake. Make sure to check responses &bull;&nbsp;
               <Link href={selectedModel.url} target="_blank" rel="noopener" download highContrast>
                 Model
               </Link>
