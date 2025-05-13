@@ -1,8 +1,3 @@
-/**
- * The approach used in this code is to consolidate all the logic in a single component.
- * This was done to focus on more on demonstration of the concept. Its is wise and welcome to refactor
- * the code to suit your needs.
- */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CHAT_ROLE as ROLE, formatChat, getWllamaInstance, PRESET_MODELS } from "./lib/wllama";
 import { Box, Callout, Container, DropdownMenu, Flex, Link, ScrollArea, Text, TextField } from "@radix-ui/themes";
@@ -19,7 +14,7 @@ const ELLIPSIS = "...";
 const DEFAULT_MODEL_ID = Object.keys(PRESET_MODELS)[0];
 
 const preventClickAction = (e) => e.preventDefault();
-// eslint-disable-next-line no-console
+
 const copyToClipboard = (text) => navigator.clipboard.writeText(text).catch((e) => console.error(e));
 const getCalloutProps = (role) =>
   role === "user" ? { variant: "soft" } : { variant: "outline", className: "no-box-shadow", highContrast: true };
@@ -201,11 +196,7 @@ function App() {
               </Dropdown>
             </Flex>
             <Box>
-              <NavLink href="https://huggingface.co/models?library=gguf&pipeline_tag=text-generation">
-                Download Models
-              </NavLink>
-              &nbsp;&bull;&nbsp;
-              <NavLink href="https://github.com/nadchif/in-browser-llm-inference">Github</NavLink>
+              <NavLink href="https://github.com/prjamming/wollama">Github</NavLink>
             </Box>
           </header>
         </Flex>
@@ -244,7 +235,7 @@ function App() {
                 {isLoading && loadedSize > 0 && (
                   <Text as="div" size="2">
                     <b>{loadingProgressDisplayString}</b> Downloading model file {modelSizeDisplayString} to your
-                    computer. This happens only the first time you load the model.
+                    computer. This will happen the first time you use the selected model.
                   </Text>
                 )}
                 <Loader isLoading={isGenerating && !isLoading} />
@@ -252,7 +243,7 @@ function App() {
             ) : (
               <Box className="welcome-text" pb="5">
                 <Text size="7" align="center" asChild>
-                  <h1 className="scale-up-center">Hi, how may I help you?</h1>
+                  <h1 className="scale-up-center">Hello, what can I do for you today?</h1>
                 </Text>
               </Box>
             )}
@@ -262,7 +253,7 @@ function App() {
               value={prompt}
               onKeyDown={handleOnPressEnter}
               onChange={handlePromptInputChange}
-              placeholder="Enter your prompt here"
+              placeholder="Enter your question here"
               maxLength={512}
               disabled={isBusy}
               variant="soft"
@@ -285,7 +276,7 @@ function App() {
           </Box>
           <Box pt="2" pb="4">
             <Text as="div" align="center" size="1" color="gray">
-              &#9888; Models can make mistakes, always double-check responses. &bull;&nbsp;
+              &#9888; The model can always make a mistake. Make sure to check responses. &bull;&nbsp;
               <Link href={selectedModel.url} target="_blank" rel="noopener" download highContrast>
                 Model
               </Link>
