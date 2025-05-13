@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import NavLink from "./components/NavLink";
 import Dropdown from "./components/Dropdown";
 import IconButton from "./components/IconButton";
+import Loader from "./components/Loader";
 
 const ELLIPSIS = "...";
 const DEFAULT_MODEL_ID = Object.keys(PRESET_MODELS)[0];
