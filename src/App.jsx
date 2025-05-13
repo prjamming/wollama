@@ -5,7 +5,6 @@ import { ArrowRightIcon, DocumentDuplicateIcon, PencilSquareIcon, SpeakerWaveIco
 import { StopCircleIcon } from "@heroicons/react/24/solid";
 import Markdown from "./components/Markdown";
 import Footer from "./components/Footer";
-import Loader from "./components/Loader";
 import NavLink from "./components/NavLink";
 import Dropdown from "./components/Dropdown";
 import IconButton from "./components/IconButton";
@@ -33,6 +32,15 @@ const modelStateDefaults = {
   loadingProgress: 0,
 };
 
+// welcome message array
+const WELCOME_MESSAGES = [
+  "Hello, what can I do for you today?",
+  "Hi there! Need help with something?",
+  "Welcome! How can I assist you?",
+  "Hey! What would you like to talk about?",
+  "Greetings! What’s on your mind today?",
+];
+
 function App() {
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState([]);
@@ -48,6 +56,11 @@ function App() {
 
   const messagesContainerRef = useRef(null);
   const fileInputRef = useRef(null);
+
+  const welcomeMessage = useMemo(() => {
+    const index = Math.floor(Math.random() * WELCOME_MESSAGES.length);
+    return WELCOME_MESSAGES[index];
+  }, []);
 
   const loadModel = async () => {
     setModelState((current) => ({ ...current, isLoading: true }));
@@ -73,17 +86,15 @@ function App() {
     }));
   };
 
-  useEffect(
-    function scrollChatToBottom() {
-      const timeout = setTimeout(() => {
-        if (messagesContainerRef.current) {
-          messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
-        }
-      }, 0);
-      return () => clearTimeout(timeout);
-    },
-    [messages]
-  );
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (messagesContainerRef.current) {
+        messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+      }
+    }, 0);
+    return () => clearTimeout(timeout);
+  }, [messages]);
+
   useEffect(() => () => wllama.exit(), []);
 
   const streamMessages = (prompt) => {
@@ -119,14 +130,11 @@ function App() {
   };
 
   const handleOnPressEnter = (e) => (e.key === "Enter" ? submitPrompt() : null);
-
   const handlePromptInputChange = (e) => setPrompt(e.target.value);
 
   const handleFileInputChange = (event) => {
     const files = event.target.files;
-    if (!files.length) {
-      return;
-    }
+    if (!files.length) return;
     setLocalModelFiles(files);
     setModelState({ ...modelStateDefaults, modelId: "file" });
   };
@@ -243,7 +251,7 @@ function App() {
             ) : (
               <Box className="welcome-text" pb="5">
                 <Text size="7" align="center" asChild>
-                  <h1 className="scale-up-center">Hello, what can I do for you today?</h1>
+                  <h1 className="scale-up-center">{welcomeMessage}</h1>
                 </Text>
               </Box>
             )}
